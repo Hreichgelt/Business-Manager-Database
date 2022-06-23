@@ -37,8 +37,6 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 [Demo video]()
 
-[Heroku Deployment Demo]()
-
 
 ![Business Manager Database Landing Page]()
 

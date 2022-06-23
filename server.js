@@ -7,3 +7,4 @@ const table = require('console.table');
 // initializer
 // prompts
 // ability to add and remove employees, positions, departments
+// follow simlar process to homework 10 and 11

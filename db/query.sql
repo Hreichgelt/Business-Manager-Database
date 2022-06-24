@@ -1,6 +1,9 @@
-file needs the following:
-select *
-FROM IE - course_name */
+/* need to query: all departments, all roles, all employees,
+add department, add role, add employee, update employee role 
+
+ANTHONY MIGHT SEND OUT THE QUERY STUFF TOMORROW?
+*/
+USE organization_db;
 
 SELECT *
 FROM department

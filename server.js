@@ -1,19 +1,79 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const table = require('console.table');
+require('console.table');
 
 // file needs the following :
 // probably more const and requires
 // initializer
-// prompts
 // ability to add and remove employees, positions, departments
 // follow simlar process to homework 10 and 11
-
 
 // GIVEN a command-line application that accepts user input
 // WHEN I start the application
 // THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-async function viewAllPrompt() {
+
+const db = mysql.createConnection(
+  {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'organization_db'
+  },
+  console.log(`Connected to the organization_db database.`)
+);
+
+
+const allDepartments = () => {
+    db.query('SELECT * FROM department WHERE id = 1', function (err, results) {
+        console.log(results);
+         return init();
+      });
+}
+
+const allRoles = () => {
+    db.query('SELECT * FROM role WHERE id = 1', function (err, results) {
+        console.log(results);
+         return init();
+      });
+}
+
+const allEmployees = () => {
+    db.query('SELECT * FROM employee WHERE id = 1', function (err, results) {
+        console.log(results);
+         return init();
+      });
+// }
+
+// const addDepartment = () => {
+//     db.query('SELECT * FROM department', function (err, results) {
+//         console.log(results);
+//          return init();
+//       });
+// }
+
+// const addRole = () => {
+//     db.query('SELECT * FROM department', function (err, results) {
+//         console.log(results);
+//          return init();
+//       });
+// }
+
+// const addEmployee = () => {
+//     db.query('SELECT * FROM department', function (err, results) {
+//         console.log(results);
+//          return init();
+//       });
+// }
+
+// const updateEmployeeRole = () => {
+//     db.query('SELECT * FROM department', function (err, results) {
+//         console.log(results);
+//          return init();
+//       });
+// }
+
+
+const init() => {
     while (true) {
         const response = await inquirer.prompt([
             {
@@ -45,12 +105,15 @@ async function viewAllPrompt() {
                 case 'update employee role':
                     await updateEmployeeRole();
                     break;
-                case 'quit':
-                    await quit();
-                    break;
+                default: {
+                    process.exit
+                }
+ 
+
             }
         })
     }
 };
 
-// const allDepartments = 
+init();
+

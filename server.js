@@ -34,7 +34,7 @@ const allDepartments = () => {
 }
 
 const allRoles = () => {
-    db.query('SELECT * FROM role WHERE id = 1', function (err, results) {
+    db.query('SELECT * FROM role', function (err, results) {
         if (err) return console.error(err);
         console.table(results);
          return init();
@@ -42,7 +42,7 @@ const allRoles = () => {
 }
 
 const allEmployees = () => {
-    db.query('SELECT * FROM employee WHERE id = 1', function (err, results) {
+    db.query('SELECT * FROM employee', function (err, results) {
         if (err) return console.error(err);
         console.table(results);
          return init();
@@ -50,7 +50,7 @@ const allEmployees = () => {
 }
 
 const addDepartment = () => {
-    db.query('INSERT INTO * FROM department', function (err, results) {
+    db.query('INSERT INTO department SET id; SET name', function (err, results) {
         if (err) return console.error(err);
         console.table(results);
          return init();
@@ -58,7 +58,7 @@ const addDepartment = () => {
 }
 
 const addRole = () => {
-    db.query('INSERT INTO * FROM department', function (err, results) {
+    db.query('INSERT INTO role SET id; SET title; SET salary; SET department_id', function (err, results) {
         if (err) return console.error(err);
         console.table(results);
          return init();
@@ -66,7 +66,7 @@ const addRole = () => {
 }
 
 const addEmployee = () => {
-    db.query('INSERT INTO * FROM department', function (err, results) {
+    db.query('INSERT INTO emoloyee SET id; SET first_name; SET last_name; SET role_id; SET manager_id ', function (err, results) {
         if (err) return console.error(err);
         console.table(results);
          return init();

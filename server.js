@@ -3,117 +3,180 @@ const inquirer = require('inquirer');
 require('console.table');
 
 // file needs the following :
-// probably more const and requires
-// initializer
-// ability to add and remove employees, positions, departments
-// follow simlar process to homework 10 and 11
+// PERSONAL BONuS - ADD A SEARCH FEATURE TO FIND EMPLOYEES
 
-// GIVEN a command-line application that accepts user input
-// WHEN I start the application
-// THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
+
+// THIS IS FROM SERVER JS IN ACTIVITY 21 USE IT!!!!! Hardcoded query: DELETE FROM course_names WHERE id = 3;
+// const num = 3
+//  instead of const num use const options = { id: 4}, then plug into [tableName, options ] can do sequentials
+// const tableName = 'course_names';
+// where id = ?? replaces course_names below then add [tableName, num], after ?`
 
 const db = mysql.createConnection(
   {
-    host: 'localhost',
     user: 'root',
-    password: '',
     database: 'organization_db'
   },
   console.log(`Connected to the organization_db database.`)
 );
 
+const tableDep = 'department';
+const tableRole = 'role';
+const tableEmp = 'employee';
+
 
 const allDepartments = () => {
     db.query('SELECT * FROM department WHERE id = 1', function (err, results) {
-        console.log(results);
+        if (err) return console.error(err);
+        console.table(results);
          return init();
       });
 }
 
 const allRoles = () => {
     db.query('SELECT * FROM role WHERE id = 1', function (err, results) {
-        console.log(results);
+        if (err) return console.error(err);
+        console.table(results);
          return init();
       });
 }
 
 const allEmployees = () => {
     db.query('SELECT * FROM employee WHERE id = 1', function (err, results) {
-        console.log(results);
+        if (err) return console.error(err);
+        console.table(results);
          return init();
       });
-// }
+}
 
-// const addDepartment = () => {
-//     db.query('SELECT * FROM department', function (err, results) {
-//         console.log(results);
-//          return init();
-//       });
-// }
+const addDepartment = () => {
+    db.query('INSERT INTO * FROM department', function (err, results) {
+        if (err) return console.error(err);
+        console.table(results);
+         return init();
+      });
+}
 
-// const addRole = () => {
-//     db.query('SELECT * FROM department', function (err, results) {
-//         console.log(results);
-//          return init();
-//       });
-// }
+const addRole = () => {
+    db.query('INSERT INTO * FROM department', function (err, results) {
+        if (err) return console.error(err);
+        console.table(results);
+         return init();
+      });
+}
 
-// const addEmployee = () => {
-//     db.query('SELECT * FROM department', function (err, results) {
-//         console.log(results);
-//          return init();
-//       });
-// }
+const addEmployee = () => {
+    db.query('INSERT INTO * FROM department', function (err, results) {
+        if (err) return console.error(err);
+        console.table(results);
+         return init();
+      });
+}
 
-// const updateEmployeeRole = () => {
-//     db.query('SELECT * FROM department', function (err, results) {
-//         console.log(results);
-//          return init();
-//       });
-// }
-
-
-const init() => {
-    while (true) {
-        const response = await inquirer.prompt([
-            {
-                type: 'list',
-                name: 'menu',
-                message: 'select an option',
-                choices: ['start']
-            }
-        ]).then((response) {
-            switch (response.menu) {
-                case 'view all departments':
-                    await allDepartments();
-                    break;
-                case 'view all roles':
-                    await allRoles();
-                    break;
-                case 'view all employees':
-                    await allEmployees();
-                    break;
-                case 'add department':
-                    await addDepartment();
-                    break;
-                case 'add role':
-                    await addRole();
-                    break;
-                case 'add employee':
-                    await addEmployee();
-                    break;
-                case 'update employee role':
-                    await updateEmployeeRole();
-                    break;
-                default: {
-                    process.exit
-                }
- 
-
-            }
-        })
+const updateEmployeeRole = () => {
+    db.query('SELECT * FROM department', function (err, results) {
+        if (err) return console.error(err);
+        console.table(results);
+         return init();
+      });
     }
-};
+
+const updateEmployee = () => {
+    db.query('SELECT * FROM department', function (err, results) {
+        if (err) return console.error(err);
+        console.table(results);
+         return init();
+          });
+
+// const deleteRole = () => {
+//     db.query('SELECT * FROM department', function (err, results) {
+    // if (err) return console.error(err);
+//         console.table(results);
+//          return init();
+//       });
+
+// const deleteEmployee = () => {
+//     db.query('SELECT * FROM department', function (err, results) {
+    // if (err) return console.error(err);
+//         console.table(results);
+//         return init();
+//           });
+}
+
+// db.query(`DELETE FROM organization_db( WHERE id = ?`, num, (err, result) => {if (err) {
+//     console.log(err);
+//   }
+//   console.table(result);
+// });
+
+const init = () => {
+    inquirer.prompt([
+    {
+        type: 'rawlist',
+        name: 'menu',
+        message: 'select an option',
+        choices: [
+            'Show all departments',
+            'Show all roles',
+            'Show all employees',
+            'Add a department',
+            'Add a role',
+            'Add an employee',
+            'Update employee role',
+            'Update an employee',
+            'Delete a role',
+            'delete an employee',
+        ]
+    }
+    ]).then((response) => {
+        switch (response.query) {
+            case 'Show all departments': {
+                allDepartments();
+                break;
+            }
+            case 'Show all roles': {
+                allRoles();
+                break;
+            }
+            case 'Show all employees': {
+                allEmployees();
+                break;
+            }
+            case 'Add a department': {
+                addDepartment();
+                break;
+            }
+            case 'Add a role': {
+                addRole();
+                break;
+            }
+            case 'Add an employee': {
+                addEmployee();
+                break;
+            }
+            case 'Update employee role': {
+                updateEmployeeRole();
+                break;
+            }
+            case 'Update an employee': {
+                updateEmployee();
+                break;
+            }
+            case 'Delete a role': {
+                deleteRole();
+                break;
+            }
+            case 'Delete an employee ': {
+                deleteEmployee();
+                break;
+            }
+            default: {
+                process.exit
+            }
+        }
+    });
+}
+
 
 init();
 

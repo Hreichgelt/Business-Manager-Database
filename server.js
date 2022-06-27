@@ -10,6 +10,7 @@ const db = mysql.createConnection(
   console.log(`Connected to the organization_db database.`)
 );
 
+
 const init = () => {
     inquirer.prompt([
     {
@@ -24,9 +25,7 @@ const init = () => {
             'Add a role',
             'Add an employee',
             'Update employee role',
-            'Update an employee',
-            'Delete a role',
-            'delete an employee',
+            'quit'
         ]
     }
     ]).then((response) => {
@@ -59,20 +58,8 @@ const init = () => {
                 updateEmployeeRole();
                 break;
             }
-            case 'Update an employee': {
-                updateEmployee();
-                break;
-            }
-            case 'Delete a role': {
-                deleteRole();
-                break;
-            }
-            case 'Delete an employee ': {
-                deleteEmployee();
-                break;
-            }
             default: {
-                process.exit
+                process.exit();
             }
         }
     });
@@ -103,7 +90,7 @@ const allEmployees = () => {
 };
 
 const addDepartment = () => {
-    db.query('INSERT INTO department SET id; SET name', function (err, results) {
+    db.query('INSERT INTO department SET id; SET department_name', function (err, results) {
         if (err) return console.error(err);
         console.table(results);
          return init();
@@ -134,35 +121,12 @@ const updateEmployeeRole = () => {
       });
     }
 
-const updateEmployee = () => {
-    db.query('SELECT * FROM department', function (err, results) {
-        if (err) return console.error(err);
-        console.table(results);
-         return init();
-          });
-
-// const deleteRole = () => {
-//     db.query('SELECT * FROM department', function (err, results) {
-    // if (err) return console.error(err);
-//         console.table(results);
-//          return init();
-//       });
-
-// const deleteEmployee = () => {
-//     db.query('SELECT * FROM department', function (err, results) {
-    // if (err) return console.error(err);
-//         console.table(results);
-//         return init();
-//           });
-}
 
 // db.query(`DELETE FROM organization_db( WHERE id = ?`, num, (err, result) => {if (err) {
 //     console.log(err);
 //   }
 //   console.table(result);
 // });
-
-
 
 
 init();

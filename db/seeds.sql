@@ -1,5 +1,5 @@
 
-INSERT INTO department (department_id, department_name)
+INSERT INTO department (id, department_name)
 VALUES (1, 'IT'),
        (2, 'Finance'),
        (3, 'HR'),
@@ -8,7 +8,7 @@ VALUES (1, 'IT'),
        (6, 'Management');
 
 
-INSERT INTO role (role_id, title, salary, department_id)
+INSERT INTO role (id, title, salary, department_id)
 VALUES (1, 'IT Manager', 200000, 6),
        (2, 'Finance Manager', 150000, 6),
        (3, 'HR Manager', 110000, 6),
@@ -22,7 +22,7 @@ VALUES (1, 'IT Manager', 200000, 6),
        (11, 'Engineer', 101000, 1);
 
 /* Does employee need more keys? -  */
-INSERT INTO employee (employee_id, first_name, last_name, role_id, manager_id)
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES (1, 'Ty', 'Pataska', 1, 5),
        (2, 'Billy', 'Ross', 2, 5),
        (3, 'Tyler', 'Smet', 3, 5),

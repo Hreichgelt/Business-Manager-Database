@@ -151,8 +151,12 @@ function addEmployee() {
   db.query("SELECT id, department_id FROM role", function (err, response) {
     if (err) return console.error(err);
 
-    const choices = response.map((e) => ({
+    const choice1 = response.map((e) => ({
       name: e.department_name,
+      value: e.id,
+    }));
+    const choice2 = response.map((e) => ({
+      name: e.manager_id,
       value: e.id,
     }));
 
@@ -160,26 +164,37 @@ function addEmployee() {
       .prompt([
         {
           type: "input",
-          name: "first_name",
+          name: "firstName",
           message: "what is this persons first name?",
         },
         {
           type: "input",
-          name: "last_name",
+          name: "lastName",
           message: "what is this persons last name??",
         },
         {
           type: "rawlist",
           name: "departments",
-          message: "what department is this employee in?",
-          choices: choices,
+          message: "which department is the role in??",
+          choices: choice1,
+        },
+        {
+          type: "rawlist",
+          name: "Mngr",
+          message: "who is the employee manager?",
+          choices: choice2,
         },
       ])
       .then((response) => {
         db.query(
-          `INSERT INTO employee (id, firstName, LastName, department_id)
-          VALUES (?, ?, ?);`,
-          [response.firstName, response.lastName, response.departments],
+          `INSERT INTO employee (firstName, lastName, departments, Mngr)
+          VALUES (?, ?, ?, ?);`,
+          [
+            response.firstName,
+            response.lastName,
+            response.departments,
+            response.Mngr,
+          ],
 
           function (err, response) {
             if (err) return console.error(err);
@@ -216,8 +231,12 @@ const allEmployees = () => {
 };
 
 const updateEmployeeRole = () => {
-  db.query("SELECT * FROM department", function (err, results) {
+  db.query("SELECT * FROM employee", function (err, employeeInf) {
     if (err) return console.error(err);
+    db.query("SELECT * FROM role", function (err, roleInf) {
+      if (err) return console.error(err);
+      inquirer.prompt([{}]);
+    });
     console.table(results);
     return init();
   });

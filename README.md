@@ -13,8 +13,7 @@
 5. [Resources](#resources)
 
 ## DESCRIPTION
-
-Command-line application for business owners to manage departments, roles, employees for business planning and organization.
+Content Management System (CMS) as a command-line application for business owners to manage departments, roles, employees for business planning and organization. This application utilizes Node.js, Inquirer and MySQL.
 
 ## USAGE
 
@@ -42,9 +41,6 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ![Business Manager Database](/assets/screenshot.png)
 
-![Business Manager Database.....]()
-
-## AUTHORS AND ACKNOWLEDGMENTS
 
 ## RESOURCES
 
